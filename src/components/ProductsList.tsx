@@ -13,6 +13,11 @@ const ProductsList = ({
 	isLoading,
 	onStockUpdate,
 }: ProductListProps) => {
+	function getSaladIngredients(product: Product) {
+		const ingredient_ids = product.ingredients.map((i) => i.product_id);
+		return products.filter((p) => p.id in ingredient_ids);
+	}
+
 	return (
 		<div className="products-list">
 			{isLoading ? (
@@ -23,6 +28,7 @@ const ProductsList = ({
 						key={product.id}
 						product={product}
 						onStockUpdate={() => onStockUpdate(product)}
+						getSaladIngredients={() => getSaladIngredients(product)}
 					/>
 				))
 			)}
