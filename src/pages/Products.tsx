@@ -13,13 +13,37 @@ const Products = () => {
 		DB.getAllProducts().then((products) => setProducts(products));
 	}, []);
 
+	const onInputChange = (searchText: string) => {};
+
+	const onStockUpdate = (product: Product) => {
+		const shouldupdateStock = (product: Product, id: number) => {
+			return (
+				product.id === id ||
+				product.ingredients.some((i) => i.product_id === id)
+			);
+		};
+
+		DB.toggleProductInStock(product.id).then(() => {
+			setProducts((prevProducts) => {
+				const updatedProducts = prevProducts.map((p) =>
+					shouldupdateStock(p, product.id) ? { ...p, in_stock: !p.in_stock } : p
+				);
+				return updatedProducts;
+			});
+		});
+	};
+
 	return (
 		<div className="products-page">
 			{/* start of solution */}
 			<Header />
 			<div className="products-search-container">
 				<SearchFilter onInputChange={() => {}} />
-				<ProductsList products={products} />
+				<ProductsList
+					products={products}
+					isLoading={products.length === 0}
+					onStockUpdate={onStockUpdate}
+				/>
 			</div>
 
 			<Footer />
