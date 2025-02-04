@@ -3,19 +3,8 @@ import React from "react";
 const Header = () => {
 	return (
 		<div className="header">
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					alignItems: "center",
-				}}
-			>
-				<img
-					src="src/assets/Helfy-Logo.svg"
-					alt="Logo"
-					style={{ height: "40px" }}
-				/>
+			<div className="logo-container">
+				<img src="src/assets/Helfy-Logo.svg" alt="Logo" />
 				<p>Salads Manager</p>
 			</div>
 
@@ -23,7 +12,6 @@ const Header = () => {
 				<img
 					src="src/assets/hamburger-menu-mobile-svgrepo-com.svg"
 					alt="Menu"
-					style={{ height: "30px", marginRight: "10px" }}
 				/>
 			</button>
 		</div>

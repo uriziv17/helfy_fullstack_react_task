@@ -4,6 +4,7 @@ import { IoExtensionPuzzle } from "react-icons/io5";
 import SearchFilter from "../components/SearchFilter";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ProductsList from "../components/ProductsList";
 
 const Products = () => {
 	const [products, setProducts] = useState<Product[]>([]);
@@ -14,20 +15,15 @@ const Products = () => {
 
 	return (
 		<div className="products-page">
-			<Header />
-			<SearchFilter />
 			{/* start of solution */}
-			{/* {products.map((product) => {
-				const isSalad = product.ingredients.length > 0;
-				return (
-					<div key={product.id} className="product-card">
-						<h1>{product.title}</h1>
-						<p>{isSalad ? <IoExtensionPuzzle size={25} /> : null}</p>
-					</div>
-				);
-			})} */}
-			{/* end of solution */}
+			<Header />
+			<div className="products-search-container">
+				<SearchFilter />
+				<ProductsList products={products} />
+			</div>
+
 			<Footer />
+			{/* end of solution */}
 		</div>
 	);
 };
