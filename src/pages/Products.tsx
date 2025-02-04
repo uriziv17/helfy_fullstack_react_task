@@ -3,6 +3,7 @@ import { DB, Product } from "../data-providers/Server";
 import { IoExtensionPuzzle } from "react-icons/io5";
 import SearchFilter from "../components/SearchFilter";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Products = () => {
 	const [products, setProducts] = useState<Product[]>([]);
@@ -26,6 +27,7 @@ const Products = () => {
 				);
 			})} */}
 			{/* end of solution */}
+			<Footer />
 		</div>
 	);
 };
