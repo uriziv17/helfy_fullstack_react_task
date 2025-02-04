@@ -56,7 +56,20 @@ const createProduct = async (title: string) => {
 		ingredients: [],
 	};
 	products.push(newProduct);
-	console.log("products", products);
+};
+
+const createSalad = async (title: string, ingredients: number[]) => {
+	UNIQUE_ID += 1;
+	const newProduct = {
+		id: UNIQUE_ID,
+		title: title,
+		in_stock: true,
+		ingredients: ingredients.map((ingredient) => ({
+			product_id: ingredient,
+			quantity: 1,
+		})), // default quantity is 1 because this is the design in the photo
+	};
+	products.push(newProduct);
 };
 
 const toggleProductInStock = async (id: number): Promise<void> => {
@@ -85,4 +98,5 @@ export const DB = {
 	getQuestions,
 	toggleProductInStock,
 	createProduct,
+	createSalad,
 };
