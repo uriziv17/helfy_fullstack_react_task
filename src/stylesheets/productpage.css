@@ -5,9 +5,9 @@
 	width: 100%;
 }
 
-.content-container {
+.products-search-container {
 	width: 80%;
-	max-width: 1200px;
+	max-width: 800px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -29,7 +29,7 @@
 	border: 2px solid #009688;
 	border-radius: 10px;
 	padding: 15px;
-	width: 250px;
+	width: 90%;
 	background-color: white;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }

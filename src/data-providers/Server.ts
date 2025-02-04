@@ -61,7 +61,6 @@ const toggleProductInStock = async (id: number): Promise<void> => {
 			}
 		});
 	}
-	console.log(products);
 };
 
 const getQuestions = async (): Promise<Question[]> => {

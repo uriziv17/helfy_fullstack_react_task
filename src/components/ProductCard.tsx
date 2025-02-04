@@ -17,7 +17,14 @@ export default function ProductCard({
 			}`}
 		>
 			<h2 className="product-title">{product.title}</h2>
-			<button className="toggle-button" onClick={() => onStockUpdate(product)}>
+			<h1></h1>
+			<button
+				className="toggle-button"
+				onClick={(e) => {
+					e.stopPropagation();
+					onStockUpdate(product);
+				}}
+			>
 				Toggle in stock
 			</button>
 		</div>

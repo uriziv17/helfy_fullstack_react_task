@@ -5,49 +5,56 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ProductsList from "../components/ProductsList";
 import "../stylesheets/productpage.css";
+import { shouldupdateStock } from "../utils";
 
 const Products = () => {
 	const [products, setProducts] = useState<Product[]>([]);
+	const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+	const [searchTerm, setSearchTerm] = useState<string>("");
 
-	useEffect(() => {
-		DB.getAllProducts().then((products) => setProducts(products));
-	}, []);
+	const onInputChange = (searchText: string) => {
+		const lowerCaseSearchText = searchText.toLowerCase();
+		setSearchTerm(lowerCaseSearchText);
+		filterProducts(products, lowerCaseSearchText);
+	};
 
-	const onInputChange = (searchText: string) => {};
+	const filterProducts = (prods: Product[], searchTerm: string) => {
+		setFilteredProducts(
+			prods.filter((product) =>
+				product.title.toLowerCase().includes(searchTerm)
+			)
+		);
+	};
 
 	const onStockUpdate = (product: Product) => {
-		const shouldupdateStock = (product: Product, id: number) => {
-			return (
-				product.id === id ||
-				product.ingredients.some((i) => i.product_id === id)
-			);
-		};
-
 		DB.toggleProductInStock(product.id).then(() => {
-			setProducts((prevProducts) => {
-				const updatedProducts = prevProducts.map((p) =>
-					shouldupdateStock(p, product.id) ? { ...p, in_stock: !p.in_stock } : p
-				);
-				return updatedProducts;
-			});
+			const updatedProducts = products.map((p) =>
+				shouldupdateStock(p, product.id) ? { ...p, in_stock: !p.in_stock } : p
+			);
+			setProducts(updatedProducts);
+			filterProducts(updatedProducts, searchTerm);
 		});
 	};
 
+	useEffect(() => {
+		DB.getAllProducts().then((products) => {
+			setProducts(products);
+			filterProducts(products, searchTerm);
+		});
+	}, []);
+
 	return (
 		<div className="products-page">
-			{/* start of solution */}
 			<Header />
 			<div className="products-search-container">
-				<SearchFilter onInputChange={() => {}} />
+				<SearchFilter onInputChange={onInputChange} />
 				<ProductsList
-					products={products}
+					products={filteredProducts}
 					isLoading={products.length === 0}
 					onStockUpdate={onStockUpdate}
 				/>
 			</div>
-
 			<Footer />
-			{/* end of solution */}
 		</div>
 	);
 };
