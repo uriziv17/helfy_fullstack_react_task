@@ -1,11 +1,20 @@
-
-
-const SearchFilter = () => {
-  return (
-    <div >
-        <input className="search-bar" type="text" placeholder="Search products by title here..." />
-    </div>
-  )
+interface SearchFilterProps {
+	onInputChange: (searchText: string) => void;
 }
 
-export default SearchFilter
+const SearchFilter = ({ onInputChange }: SearchFilterProps) => {
+	return (
+		<div className="search-container">
+			<input
+				type="text"
+				placeholder="Search products by title here..."
+				onChange={(e) => onInputChange(e.target.value)}
+			/>
+			<button className="search-button">
+				<img src="src/assets/searchIcon.png" alt="Search" />
+			</button>
+		</div>
+	);
+};
+
+export default SearchFilter;

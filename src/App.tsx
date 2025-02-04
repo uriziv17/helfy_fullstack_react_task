@@ -1,11 +1,8 @@
-import './App.css'
-import PagesRouter from './PagesRouter'
+import "./stylesheets/App.css";
+import PagesRouter from "./PagesRouter";
 
 function App() {
-
-  return (
-    <PagesRouter />
-  )
+	return <PagesRouter />;
 }
 
-export default App
+export default App;
