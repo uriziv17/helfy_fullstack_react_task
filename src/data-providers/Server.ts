@@ -28,6 +28,7 @@ export interface Question {
 
 const getAllProducts = async (): Promise<Product[]> => {
 	//DO NOT EDIT THIS FUNCTION
+	console.log("products2", products);
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(getDeepCopy(products));
@@ -46,9 +47,16 @@ const getProductById = async (id: number): Promise<Product | undefined> => {
 	});
 };
 
-const createProduct = async () => {
+const createProduct = async (title: string) => {
 	UNIQUE_ID += 1;
-	//your implementation here
+	const newProduct = {
+		id: UNIQUE_ID,
+		title: title,
+		in_stock: true,
+		ingredients: [],
+	};
+	products.push(newProduct);
+	console.log("products", products);
 };
 
 const toggleProductInStock = async (id: number): Promise<void> => {
@@ -76,4 +84,5 @@ export const DB = {
 	getProductById,
 	getQuestions,
 	toggleProductInStock,
+	createProduct,
 };

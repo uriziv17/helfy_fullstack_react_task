@@ -44,18 +44,20 @@ const Products = () => {
 	}, []);
 
 	return (
-		<div className="products-page">
+		<>
 			<Header />
-			<div className="products-search-container">
-				<SearchFilter onInputChange={onInputChange} />
-				<ProductsList
-					products={filteredProducts}
-					isLoading={products.length === 0}
-					onStockUpdate={onStockUpdate}
-				/>
+			<div className="products-page">
+				<div className="products-search-container">
+					<SearchFilter onInputChange={onInputChange} />
+					<ProductsList
+						products={filteredProducts}
+						isLoading={products.length === 0}
+						onStockUpdate={onStockUpdate}
+					/>
+				</div>
 			</div>
 			<Footer />
-		</div>
+		</>
 	);
 };
 
