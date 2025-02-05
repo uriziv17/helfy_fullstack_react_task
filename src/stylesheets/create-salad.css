@@ -11,7 +11,7 @@
 
 .ingredient-container {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr); /* 3 columns */
+	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
 	width: 100%;
 	margin-top: 20px;
@@ -20,19 +20,19 @@
 .ingredient-button {
 	width: 30%;
 	padding: 10px;
-	margin: 10px auto;
+	margin: 10px;
 	border: 2px solid #009688;
-	background-color: white; /* Default color */
+	background-color: white;
 	font-size: 16px;
 	cursor: pointer;
 	border-radius: 5px;
-	color: #009688; /* Default text color */
+	color: #009688;
 	transition: all 0.2s ease-in-out;
 }
 
 .ingredient-button.selected {
-	background-color: #009688; /* Selected color */
-	color: white; /* Selected text color */
+	background-color: #009688;
+	color: white;
 }
 
 input {
